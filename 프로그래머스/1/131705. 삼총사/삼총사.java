@@ -1,5 +1,9 @@
+
+import java.util.Arrays;
+
 public class Solution {
     public int solution(int[] number) {
+        Arrays.sort(number);
         int count = 0;
         // -5 -2 0 2 3
         for (int i = 0; i < number.length-2; i++) {
