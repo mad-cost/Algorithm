@@ -1,33 +1,23 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
+
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-//        아이템 넣을때 - queue.offer
-//        아이템 회수할때 - queue.poll
-//        Queue를 만든다.
-        Queue<Integer> queue = new LinkedList<>();
-//        for를 이용해 1 ~ N까지의 숫자를 Queue에 넣는다.
-        for (int i = 1; i < n+1; i++) {
-            queue.offer(i);
-        }
-//        Queue의 크기가 1보다 클 동안
-        while (queue.size() > 1){
-//          Queue의 제일 앞의 아이템을 버리고,
-            queue.poll();
-//          그 다음 앞의 아이템을 빼서, (poll)
-            int front = queue.poll();
-//          제일 뒤로 넣는다. (offer)
-            queue.offer(front);
-        }
-        
-//        마지막 남은 아이템을 출력한다.
-        System.out.println(queue.poll());
+  public static void main(String[] args) throws IOException {
+    BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(bf.readLine());
 
+    Queue<Integer> myQueue = new LinkedList<>();
+    for (int i = 1; i <= N;i++){
+      myQueue.add(i);
     }
+
+    while (myQueue.size() > 1){
+      myQueue.poll();
+      myQueue.add(myQueue.poll());
+    }
+    System.out.println(myQueue.poll());
+  }
 }
