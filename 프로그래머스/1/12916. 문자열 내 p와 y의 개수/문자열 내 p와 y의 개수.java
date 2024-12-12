@@ -1,24 +1,25 @@
+import java.util.*;
+
 class Solution {
-    static int[] count = new int[2];
-    
+    static int count;
     boolean solution(String s) {
-        // [연습] DFS로 문제 풀어보기
-        s = s.toUpperCase();
-        return DFS(s, 0);
+    //[연습] BFS로 문제 풀어보기
+    s = s.toUpperCase();
+    Queue<String> queue = new LinkedList<>();
+    count = 0;
+    
+    for(int i = 0; i < s.length(); i++){
+        queue.add(String.valueOf(s.charAt(i)));
     }
-
-    static boolean DFS(String s, int index) {
-        // 종료 조건
-        if (index >= s.length()) {
-            return count[0] == count[1] ? true : false;
+    while(!queue.isEmpty()){
+        String target = queue.poll();
+        if(target.equals("P")){
+            count ++;
         }
-
-        if (s.charAt(index) == 'P') {
-            count[0]++;
-        } else if (s.charAt(index) == 'Y') {
-            count[1]++;
+        if(target.equals("Y")){
+            count --;
         }
-        // 다음 인덱스로 재귀 호출
-        return DFS(s, index + 1);
+    }
+        return count == 0 ? true : false;    
     }
 }
