@@ -1,17 +1,20 @@
 class Solution {
     boolean solution(String s) {
-        // [연습] 포인터 사용해서 풀어보기
-        boolean answer = true;
+        //[연습] 포인터 사용해서 풀어보기
         s = s.toUpperCase();
-        int[] count = new int[2];
+        int[] count = {0,0}; // P = 0, Y = 0
         
-        for(int i = 0; i < s.length(); i++){
-            if(s.charAt(i) == 'P'){
+        int startIndex = 0;
+    
+        while(s.length() > startIndex){
+            if(s.charAt(startIndex) == 'P'){
                 count[0] += 1;
-            }else if(s.charAt(i) == 'Y'){
+            }else if(s.charAt(startIndex) == 'Y'){
                 count[1] += 1;
             }
+            startIndex += 1;
         }
-        return count[0] == count[1] ? true : false;                 
+        
+        return count[0] == count[1] ? true : false;
     }
 }
