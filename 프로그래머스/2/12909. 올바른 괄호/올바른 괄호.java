@@ -1,16 +1,18 @@
+import java.util.*;
 class Solution {
     boolean solution(String s) {
-        int count = 0;
-        for (int i = 0; i<s.length(); i++){
-            if(s.charAt(i) == '('){
-                count ++;
-            }else if(s.charAt(i) == ')'){
-                count --;
-                if(count < 0){
+        Stack<Character> stack = new Stack<>();
+        
+        for(char c : s.toCharArray()){
+            if(c == '('){
+                stack.push(c);
+            }else{
+                if(stack.isEmpty()){
                     return false;
                 }
+                stack.pop();
             }
         }
-        return count==0 ? true : false;
-    }
+         return stack.isEmpty(); // 괄호의 수가 맞아서 비어있을 경우 true 반환 
+    }    
 }
