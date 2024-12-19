@@ -1,28 +1,38 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
+// 1546 배열 사용하기
 public class Main {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    int N = sc.nextInt();
+  public static void main(String[] args) throws IOException {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int N = Integer.parseInt(br.readLine()); // 3
+    StringTokenizer st = new StringTokenizer(br.readLine()); // 40 80 60
+
+    int[] A = new int[N];
+
     int max = 0;
-    double result = 0;
-
-    int[] numbers = new int[N];
-
-    for (int i = 0; i < N ; i ++){
-      numbers[i] = sc.nextInt(); // 40 / 80 / 60
+    // A 배열 초기화
+    for (int i = 0; i < N; i++) {
+      A[i] = Integer.parseInt(st.nextToken());
+      max = Math.max(max, A[i]); // 최댓값 구하기
     }
 
-    for (int j = 0 ; j < N ; j++) {
-      if (numbers[j] > max) {
-        max = numbers[j]; // 80
-      }
+    double sum = 0;
+    for (int i = 0; i < N; i++) {
+      sum += (double) A[i] / max * 100; // 문제 요구사항
     }
 
-    for (int z = 0 ; z < N ; z++){
-      result += (double) numbers[z] / max*100;
-    }
-
-    System.out.print(result/N);
+    System.out.println(sum / N);
   }
 }
+
+
+/*
+>>
+3
+40 80 60
+<<
+75.0
+ */
