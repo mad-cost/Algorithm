@@ -14,7 +14,7 @@ public class Main {
     int sum = 0;
 
     for (int i = 0; i < N; i++) {
-      A[i] = M.charAt(i) - '0'; // '5'(53) - '0'(48) = 5
+      A[i] = Integer.parseInt(M.substring(i, i+1));
       sum += A[i];
     }
 
