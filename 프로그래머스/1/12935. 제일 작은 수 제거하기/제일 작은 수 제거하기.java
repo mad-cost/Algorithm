@@ -1,25 +1,27 @@
-import java.util.*;
-
-// ArrayList 사용해서 문제 해결
 class Solution {
     public int[] solution(int[] arr) {
-        if(arr.length == 1){
-            return new int[]{-1};
+        if (arr.length == 1){
+            return new int[] {-1}; 
         }
         
-        List<Integer> list = new ArrayList<>();
+        int min = findMin(arr, 0, Integer.MAX_VALUE);
         
+        int[] answer = new int[arr.length - 1];
+        
+        int index = 0;
         for(int i : arr){
-            list.add(i);
+            if(i != min){
+                answer[index++] = i;
+            }
         }
-        
-        list.remove(Collections.min(list));
-        
-        int[] answear = new int[arr.length - 1];
-        
-        for(int i=0; i < list.size(); i++){
-            answear[i] = list.get(i);
-        }
-        return answear;
+        return answer;
     }
+    
+    public int findMin(int[] arr, int index, int min){
+        if(arr.length == index){
+            return min;
+        }
+        return findMin(arr, index+1, Math.min(min, arr[index]));
+    }
+    
 }
