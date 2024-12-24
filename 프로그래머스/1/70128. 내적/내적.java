@@ -1,12 +1,12 @@
-// 계산해주는 메서드 분리하기
+// 재귀 함수로 풀어보기
 class Solution {
     public int solution(int[] a, int[] b) {
-        return calculate(a, b, 0);
+        return recursive(a, b, 0, 0);
     }
-    public static int calculate(int[] a, int[]b, int sum){
-        for(int i = 0; i < a.length; i++){
-            sum += a[i] * b[i];
+    public static int recursive(int[] a, int[]b, int index, int result){
+        if(index == a.length){
+            return result;
         }
-        return sum;
+        return recursive(a, b, index + 1, result + ( a[index]  * b[index] ));
     }
 }
