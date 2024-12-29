@@ -2,18 +2,17 @@
 class Solution {
     public boolean solution(String s) {
         boolean answer = true;
-        char[] c = s.toCharArray();
-        
-        if(c.length != 4 && c.length != 6)
-        return false;
-        
-        for(int i = 0; i<c.length; i++){
+
+        if(s.length() == 4 || s.length() == 6){
             try{
-                Integer.parseInt(String.valueOf(c[i]));
-            }catch (Exception e) {
+                Integer.parseInt(s);
+            }catch (Exception e){
                 return false;
             }
+        }else{
+            return false;
         }
-        return answer;
+        
+        return true;
     }
 }
