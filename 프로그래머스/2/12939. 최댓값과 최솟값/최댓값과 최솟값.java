@@ -1,18 +1,24 @@
-// 방법 1 - sort 메서드 사용
-import java.util.*;
+// Math 메서드 사용
 class Solution {
     public String solution(String s) {
         String[] strArr = s.split(" ");
         
         int[] intArr = new int[strArr.length];
+        
         int index = 0;
-        for(String i : strArr){
-            intArr[index++] = Integer.parseInt(i);
+        for(String str : strArr){
+            intArr[index++] = Integer.parseInt(str);
         }
         
-        Arrays.sort(intArr);
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
         
-        String answer = intArr[0] + " " + intArr[intArr.length - 1];
+        for (int i = 0; i < intArr.length; i++){
+            min = Math.min(min, intArr[i]);
+            max = Math.max(max, intArr[i]);
+        }
+        
+        String answer = min + " " + max;
         return answer;
     }
 }
