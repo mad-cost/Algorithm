@@ -1,22 +1,25 @@
 import java.util.*;
-// 정렬, 메서드로 풀기 1
+// 우선 순위 큐로 해결하기
 class Solution
 {
     public int solution(int []A, int []B)
     {
-        Arrays.sort(A);
-        Arrays.sort(B);
+        PriorityQueue<Integer> minA = new PriorityQueue<>();
+        for (int num : A){
+            minA.add(num);
+        }
+        
+        PriorityQueue<Integer> maxB = new PriorityQueue<>(Collections.reverseOrder());
+        for (int num : B){
+            maxB.add(num);
+        }
         
         int answer = 0;
-        for (int i = 0; i < A.length; i++){
-            int a = A[i];
-            answer = multipleAndAdd(a, B, i, answer);         
+        
+        while(!minA.isEmpty() && !maxB.isEmpty()){
+            answer += minA.poll() * maxB.poll();
         }
+        
         return answer;
-    }
-    
-    static int multipleAndAdd(int a, int[] B, int i, int answer){
-        int b = B[B.length - 1 - i];
-        return answer += a * b;
     }
 }
