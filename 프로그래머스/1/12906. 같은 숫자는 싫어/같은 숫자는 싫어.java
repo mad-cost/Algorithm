@@ -1,21 +1,24 @@
 import java.util.*;
-// 스택으로 해결하기
+// 큐로 해결하기
 public class Solution {
     public int[] solution(int []arr) {
-        Stack<Integer> stack = new Stack<>();
+        Queue<Integer> queue = new LinkedList<>();
+        int checkNum = -1; // 음수가 없을 경우만 가능
         
         for(int num : arr){
-            if(stack.isEmpty() || stack.peek() != num){
-                stack.push(num);
+            if(checkNum != num){
+                queue.add(num);
+                checkNum = num;
             }
         }
         
-        int[] answer = new int[stack.size()];
-        int index = stack.size() - 1;
+        int[] answer = new int[queue.size()];
         
-        while(!stack.isEmpty()){
-            answer[index--] = stack.pop();
+        int index = 0;
+        while(!queue.isEmpty()){
+            answer[index++] = queue.poll();
         }
+        
         return answer;
     }
 }
