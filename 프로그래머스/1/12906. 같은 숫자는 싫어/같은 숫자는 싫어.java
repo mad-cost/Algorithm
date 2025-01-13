@@ -1,22 +1,20 @@
 import java.util.*;
-
+// 스택으로 해결하기
 public class Solution {
     public int[] solution(int []arr) {
-        ArrayList<Integer> list = new ArrayList<>();
-        int checkArr = arr[0];
-        list.add(checkArr);
+        Stack<Integer> stack = new Stack<>();
         
-        for(int i = 0; i < arr.length; i++){
-            if(arr[i] != checkArr){
-                list.add(arr[i]);
-                checkArr = arr[i];
+        for(int num : arr){
+            if(stack.isEmpty() || stack.peek() != num){
+                stack.push(num);
             }
         }
         
-        int[] answer = new int[list.size()];
-        int index = 0;
-        for(int i : list){
-            answer[index++] = i;    
+        int[] answer = new int[stack.size()];
+        int index = stack.size() - 1;
+        
+        while(!stack.isEmpty()){
+            answer[index--] = stack.pop();
         }
         return answer;
     }
